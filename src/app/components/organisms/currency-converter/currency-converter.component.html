@@ -1,0 +1,24 @@
+<div class='slds-p-around_small slds-m-around_xx-small currency-converter'>
+
+    <p class='slds-text-heading_small'>{{ 'CURRENCY_CONVERTER.TITLE' | translate }}</p>
+
+    <input-select-combo
+        label='CURRENCY_CONVERTER.AMOUNT_TITLE'
+        (valueChange)='amountValueChange($event)'
+        (optionChange)='amountCurrencyChange($event)' 
+        [options]='amountCurrencies'>
+    </input-select-combo>
+
+    <input-select-combo
+        label='CURRENCY_CONVERTER.RESULT_TITLE'
+        [value]='resultValue' 
+        disabled='true'
+        (optionChange)='resultCurrencyChange($event)' 
+        [options]='resultCurrencies'>
+    </input-select-combo>
+
+    <alert-offline class='slds-p-top_small' *ngIf='apiError' (refresh)='latestCurrencyInformation(amountCurrency)'></alert-offline>
+
+    <tooltip buttonText='CURRENCY_CONVERTER.DISCLAIMER_TITLE' bodyText='CURRENCY_CONVERTER.DISCLAIMER_TEXT'></tooltip>
+
+</div>
